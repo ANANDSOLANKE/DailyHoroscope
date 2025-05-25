@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "postinstall": "echo 'Running postinstall script for permissions' && chmod +x node_modules/.bin/tailwindcss"
-  },
+      },
   "keywords": [],
   "author": "",
   "license": "ISC",
