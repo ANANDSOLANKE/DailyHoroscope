@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
+  "scripts": { // Make sure there's NO comma before this line if it's the first key
     "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "postinstall": "echo 'Running postinstall script for permissions' && chmod +x node_modules/.bin/tailwindcss" // MODIFIED LINE
-  },
+    "postinstall": "echo 'Running postinstall script for permissions' && chmod +x node_modules/.bin/tailwindcss"
+  }, // Make sure there's a comma here if there are more keys after "scripts"
   "keywords": [],
   "author": "",
   "license": "ISC",
