@@ -1,9 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./index.html",
+    "./index.html", // THIS LINE MUST BE PRESENT AND CORRECT
   ],
-  // TEMPORARY LINE TO FORCE GIT CHANGE
   theme: {
     extend: {},
   },
