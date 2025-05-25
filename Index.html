@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Your Destiny: World's Best Rashi Predictions</title>
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+            crossorigin="anonymous"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font family to the entire body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom styles for the prediction options hover effect */
+        .rashi-item .prediction-options {
+            transform: translateY(100%); /* Start off-screen, hidden below */
+            transition: transform 0.3s ease-out; /* Smooth slide-up transition */
+        }
+        .rashi-item:hover .prediction-options {
+            transform: translateY(0); /* Slide up to visible position on hover */
+        }
+
+        /* CSS for the zoom in/out attention-grabbing animation */
+        @keyframes zoomInOut {
+            0% { transform: scale(1); } /* Normal size */
+            50% { transform: scale(1.01); } /* Slightly zoom in */
+            100% { transform: scale(1); } /* Return to normal size */
+        }
+
+        .zoom-attention {
+            animation: zoomInOut 3s ease-in-out infinite; /* Apply zoom animation repeatedly */
+        }
+
+        /* CSS for the vibrating and color change attention-grabbing animation */
+        @keyframes vibrateColorChange {
+            0% { transform: translateX(0); color: #be123c; /* rose-700 */ }
+            25% { transform: translateX(-2px); color: #f43f5e; /* rose-500 */ }
+            50% { transform: translateX(2px); color: #be123c; /* rose-700 */ }
+            75% { transform: translateX(-2px); color: #f43f5e; /* rose-500 */ }
+            100% { transform: translateX(0); color: #be123c; /* rose-700 */ }
+        }
+
+        .vibrate-attention {
+            animation: vibrateColorChange 0.5s ease-in-out infinite; /* Apply animation repeatedly */
+        }
+
+        /* --- 2D Cosmic Orbit Animation CSS --- */
+        /* Wrapper to contain the 3D perspective and position the orbiting system */
+        .cosmic-orbit-wrapper {
+            position: relative;
+            width: 400px; /* Larger width for the orbit area */
+            height: 250px; /* Larger height for the orbit area */
+            margin: 20px auto 40px auto; /* Center it and add space below */
+            perspective: 800px; /* Add perspective for depth illusion */
+            overflow: hidden; /* Hide elements that go outside the wrapper */
+        }
+
+        /* The main container that rotates to create the orbit for planets */
+        .cosmic-orbit-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1px; /* Acts as the center point for rotation */
+            height: 1px;
+            transform-style: preserve-3d; /* Enable 3D transforms for children */
+            /* Fixed tilt for the entire orbital plane, and then rotateY for orbit */
+            transform: translate(-50%, -50%) rotateX(20deg); /* Apply a fixed tilt to the entire orbit */
+            animation: rotateOrbit 40s linear infinite; /* Overall rotation of the system */
+            transform-origin: center center; /* Ensure rotation is around its own center */
+        }
+
+        /* Keyframe for the overall orbit rotation */
+        @keyframes rotateOrbit {
+            /* Start and end with the fixed tilt, only rotateY changes */
+            from { transform: translate(-50%, -50%) rotateX(20deg) rotateY(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(20deg) rotateY(360deg); }
+        }
+
+        /* The sun, positioned independently within the wrapper */
+        .cosmic-sun {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 50% 50%, #FFD700, #FFA500, #FF4500); /* Golden to orange gradient */
+            border-radius: 50%;
+            box-shadow: 0 0 20px #FFD700, 0 0 40px rgba(255, 165, 0, 0.7), 0 0 60px rgba(255, 69, 0, 0.5);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the sun within the wrapper */
+            z-index: 20; /* Ensure sun is on top of orbiting items */
+        }
+
+        /* Individual Rashi item (logo + name) in the orbit */
+        .rashi-orbit-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px; /* Base size for Rashi items */
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            /* Initial transform properties set by JS for random distribution */
+            transform: translate(-50%, -50%) translateX(var(--orbit-x, 0px)) translateY(var(--orbit-y, 0px)) translateZ(var(--orbit-z, 0px)) scale(var(--scale-factor, 1)) rotateY(var(--counter-rotate-y, 0deg));
+            transition: transform 0.1s linear, z-index 0.1s linear, opacity 0.1s linear; /* Smooth transitions */
+        }
+
+        .rashi-orbit-item p {
+            font-size: 0.8rem;
+            color: #fff;
+            margin-top: 5px;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+            white-space: nowrap; /* Prevent name from wrapping */
+        }
+        /* --- End 2D Cosmic Orbit Animation CSS --- */
+
+        /* Styles for collapsible sections when collapsed */
+        .collapsible-section.collapsed {
+            padding-top: 0.5rem; /* Reduced padding */
+            padding-bottom: 0.5rem; /* Reduced padding */
+            margin-bottom: 0.5rem; /* Reduced margin between sections */
+            transition: all 0.3s ease-out; /* Smooth transition for collapsing */
+        }
+
+        .collapsible-section.collapsed h2 {
+            margin-bottom: 0; /* No margin below the h2 when collapsed */
+        }
+
+        /* Styling for the loading spinner */
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #f43f5e; /* rose-500 */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-rose-100 text-gray-800 antialiased flex flex-col min-h-screen">
+    <header class="bg-gradient-to-r from-pink-600 to-rose-800 text-white p-6 shadow-xl rounded-b-3xl">
+        <div class="container mx-auto text-center py-6">
+            <h1 class="text-5xl font-extrabold mb-4 tracking-tight leading-tight">🌟 Unlock Your Cosmic Blueprint 🌟</h1>
+
+            <div class="cosmic-orbit-wrapper">
+                <div class="cosmic-sun"></div>
+                <div id="cosmic-orbit-container" class="cosmic-orbit-container">
+                    </div>
+            </div>
+
+            <nav class="mt-8">
+                <ul class="flex justify-center space-x-6 text-lg font-medium">
+                    <li><a href="#rashi-selection" class="hover:text-rose-200 transition-colors duration-200">Rashi Predictions</a></li>
+                    <li><a href="#about-us-section" class="hover:text-rose-200 transition-colors duration-200">About Us</a></li>
+                    <li><a href="#contact-us-section" class="hover:text-rose-200 transition-colors duration-200">Contact Us</a></li>
+                    <li><a href="#legal-info-section" class="hover:text-rose-200 transition-colors duration-200">Legal Info</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8 my-10 flex-grow">
+        <section class="bg-gradient-to-br from-white to-rose-200 p-12 rounded-3xl shadow-2xl mb-12 text-center border-2 border-rose-300 zoom-attention">
+            <h2 class="text-4xl font-bold text-rose-900 mb-6 leading-snug">What Cosmic Energies Await You?</h2>
+            <span class="font-semibold text-rose-700 block mt-4 text-2xl">Simply select your Rashi below to unveil your path to clarity and success!</span>
+        </section>
+
+        <section id="rashi-selection" class="bg-white p-10 rounded-3xl shadow-2xl mb-12 border-2 border-rose-300">
+            <h2 class="text-3xl font-bold text-center mb-10 text-rose-800 vibrate-attention">Choose Your Cosmic Sign with Confidence</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="aries">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/aries.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=ARI';" alt="Aries Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Aries</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="taurus">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/taurus.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=TAU';" alt="Taurus Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Taurus</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="gemini">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/gemini.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=GEM';" alt="Gemini Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Gemini</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="cancer">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/cancer.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=CAN';" alt="Cancer Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Cancer</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="leo">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/leo.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=LEO';" alt="Leo Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Leo</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="virgo">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/virgo.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=VIR';" alt="Virgo Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Virgo</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="libra">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/libra.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=LIB';" alt="Libra Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Libra</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="scorpio">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/scorpio.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=SCO';" alt="Scorpio Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Scorpio</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="sagittarius">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/sagittarius.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=SAG';" alt="Sagittarius Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Sagittarius</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="capricorn">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/capricorn.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=CAP';" alt="Capricorn Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Capricorn</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="aquarius">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/aquarius.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=AQU';" alt="Aquarius Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Aquarius</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+
+                <div class="rashi-item group relative bg-rose-50 p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer overflow-hidden border border-rose-200 transform hover:scale-105" data-rashi="pisces">
+                    <div class="flex flex-col items-center justify-center h-full">
+                        <img src="./images/pisces.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/f43f5e/ffffff?text=PIS';" alt="Pisces Logo" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-rose-600 p-1 shadow-md">
+                        <p class="text-xl font-semibold text-gray-800">Pisces</p>
+                    </div>
+                    <div class="prediction-options absolute bottom-0 left-0 w-full bg-gradient-to-t from-rose-900 to-transparent text-white py-3 flex flex-col justify-center items-center text-base space-y-2 rounded-b-2xl">
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="daily">Daily</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="weekly">Weekly</span>
+                        <span class="option-button block w-full text-center px-4 py-2 hover:bg-white hover:text-rose-900 rounded-md transition-colors duration-200 font-medium" data-timeframe="monthly">Monthly</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prediction-display" class="bg-white p-10 rounded-3xl shadow-2xl border-2 border-rose-300">
+            <h2 class="text-3xl font-bold text-center mb-8 text-rose-800">Your Personalized Cosmic Insight</h2>
+            <div id="prediction-content" class="bg-rose-50 p-8 rounded-xl border border-rose-200 text-lg text-gray-700 min-h-[200px] flex flex-col items-center justify-center text-left shadow-inner leading-relaxed">
+                <p class="text-gray-600 text-xl font-medium text-center max-w-2xl">
+                    Ready to unveil your cosmic forecast? <br>
+                    Select your Rashi and a timeframe above to receive profound insights into your day, week, or month.
+                </p>
+            </div>
+        </section>
+
+        <section id="about-us-section" class="bg-white p-10 rounded-3xl shadow-2xl mb-12 border-2 border-rose-300 collapsible-section collapsed">
+            <h2 class="text-3xl font-bold text-center mb-8 text-rose-800 flex items-center justify-center">
+                About Us
+                <button class="toggle-button ml-4 p-2 bg-rose-200 text-rose-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold leading-none cursor-pointer" data-target="about-content">+</button>
+            </h2>
+            <div id="about-content" class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto hidden">
+                <p class="mb-4">Welcome to Rashi Insights, your premier destination for personalized cosmic guidance. Our mission is to illuminate your path and empower you with profound astrological predictions, helping you navigate life's journey with clarity and confidence.</p>
+                <p class="mb-4">Founded by a team of passionate astrologers and technologists, Rashi Insights combines ancient wisdom with modern innovation. We believe that understanding the celestial influences on your Rashi can unlock your true potential and guide you towards a more fulfilling life.</p>
+                <p>Our predictions are crafted with meticulous care, drawing upon traditional astrological principles and intuitive insights to provide you with accurate and actionable advice for your daily, weekly, and monthly endeavors. Join our community and discover the cosmic energies that await you!</p>
+            </div>
+        </section>
+
+        <section id="contact-us-section" class="bg-white p-10 rounded-3xl shadow-2xl mb-12 border-2 border-rose-300 collapsible-section collapsed">
+            <h2 class="text-3xl font-bold text-center mb-8 text-rose-800 flex items-center justify-center">
+                Contact Us
+                <button class="toggle-button ml-4 p-2 bg-rose-200 text-rose-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold leading-none cursor-pointer" data-target="contact-content">+</button>
+            </h2>
+            <div id="contact-content" class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto hidden">
+                <p class="mb-4">Have questions, feedback, or need support? We're here to help! Please feel free to reach out to us through any of the following methods:</p>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li><strong>Email:</strong> <a href="mailto:support@rashiinsights.com" class="text-rose-600 hover:underline">support@rashiinsights.com</a></li>
+                    <li><strong>Phone:</strong> +1 (555) 123-4567 (Monday - Friday, 9 AM - 5 PM EST)</li>
+                    <li><strong>Address:</strong> 123 Cosmic Lane, Astro City, Zodiak State, 98765</li>
+                </ul>
+                <p>You can also fill out the contact form below and we'll get back to you as soon as possible.</p>
+                <form class="mt-6 space-y-4">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Your Email</label>
+                        <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="john.doe@example.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">Your Message</label>
+                        <textarea id="message" name="message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500" placeholder="Type your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-rose-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-rose-800 transition-colors duration-300 shadow-md">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="legal-info-section" class="bg-white p-10 rounded-3xl shadow-2xl mb-12 border-2 border-rose-300 collapsible-section collapsed">
+            <h2 class="text-3xl font-bold text-center mb-8 text-rose-800 flex items-center justify-center">
+                Legal Information
+                <button class="toggle-button ml-4 p-2 bg-rose-200 text-rose-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold leading-none cursor-pointer" data-target="legal-content">+</button>
+            </h2>
+            <div id="legal-content" class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto hidden">
+                <h3 class="text-2xl font-semibold text-rose-700 mb-4">Terms of Service</h3>
+                <p class="mb-4">By using Rashi Insights, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully. If you do not agree to these terms, you should not use this site. The term "Rashi Insights" or "us" or "we" refers to the owner of the website. The term "you" refers to the user or viewer of our website.</p>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li>The content of the pages of this website is for your general information and use only. It is subject to change without notice.</li>
+                    <li>Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness, or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.</li>
+                    <li>Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services, or information available through this website meet your specific requirements.</li>
+                    <li>This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance, and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.</li>
+                    <li>Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offense.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-rose-700 mb-4 mt-8">Privacy Policy</h3>
+                <p class="mb-4">This privacy policy sets out how Rashi Insights uses and protects any information that you give us when you use this website. We are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement.</p>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li>We may collect the following information: name, contact information including email address, demographic information such as postcode, preferences, and interests.</li>
+                    <li>We require this information to understand your needs and provide you with a better service, and in particular for the following reasons: internal record keeping, improving our products and services, sending promotional emails about new products, special offers, or other information which we think you may find interesting.</li>
+                    <li>We are committed to ensuring that your information is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the information we collect online.</li>
+                    <li>Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-rose-900 text-white p-6 text-center rounded-t-3xl shadow-inner mt-10">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Rashi Insights. All rights reserved. | <a href="#legal-info-section" class="hover:underline">Terms & Privacy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Define Rashi data for the cosmic orbit animation
+        const rashiData = [
+            { name: "Aries", img: "./images/aries.png" },
+            { name: "Taurus", img: "./images/taurus.png" },
+            { name: "Gemini", img: "./images/gemini.png" },
+            { name: "Cancer", img: "./images/cancer.png" },
+            { name: "Leo", img: "./images/leo.png" },
+            { name: "Virgo", img: "./images/virgo.png" },
+            { name: "Libra", img: "./images/libra.png" },
+            { name: "Scorpio", img: "./images/scorpio.png" },
+            { name: "Sagittarius", img: "./images/sagittarius.png" },
+            { name: "Capricorn", img: "./images/capricorn.png" },
+            { name: "Aquarius", img: "./images/aquarius.png" },
+            { name: "Pisces", img: "./images/pisces.png" }
+        ];
+
+        // Get the container for the cosmic orbit animation
+        const cosmicOrbitContainer = document.getElementById('cosmic-orbit-container');
+
+        // Function to initialize the Rashi items in the orbit
+        function initializeRashiOrbit() {
+            const numRashi = rashiData.length;
+            const orbitRadiusX = 180; // Horizontal radius of the ellipse
+            const orbitRadiusY = 100; // Vertical radius of the ellipse (for perspective)
+
+            rashiData.forEach((rashi, index) => {
+                const angle = (index / numRashi) * 2 * Math.PI; // Angle for even distribution
+                const rashiItem = document.createElement('div');
+                rashiItem.classList.add('rashi-orbit-item');
+
+                // Create image element for the Rashi logo
+                const img = document.createElement('img');
+                img.src = rashi.img;
+                // Add onerror for fallback placeholder images
+                img.onerror = function() {
+                    this.onerror = null;
+                    const placeholderText = rashi.name.substring(0, 3).toUpperCase();
+                    this.src = `https://placehold.co/80x80/f43f5e/ffffff?text=${placeholderText}`;
+                };
+                img.alt = `${rashi.name} Logo`;
+                img.classList.add('w-12', 'h-12', 'rounded-full', 'object-cover', 'border-2', 'border-rose-400', 'p-0.5', 'shadow-sm');
+
+                // Create paragraph element for the Rashi name
+                const p = document.createElement('p');
+                p.textContent = rashi.name;
+
+                rashiItem.appendChild(img);
+                rashiItem.appendChild(p);
+                cosmicOrbitContainer.appendChild(rashiItem);
+
+                // Set initial position using CSS variables
+                // These will be updated dynamically in the animation loop
+                rashiItem.style.setProperty('--orbit-x', `${orbitRadiusX * Math.cos(angle)}px`);
+                rashiItem.style.setProperty('--orbit-y', `${orbitRadiusY * Math.sin(angle)}px`);
+                rashiItem.style.setProperty('--orbit-z', `${-orbitRadiusY * Math.sin(angle)}px`); // For depth effect
+                rashiItem.style.setProperty('--scale-factor', `${1 - 0.3 * Math.abs(Math.sin(angle))}`); // Scale based on position
+                rashiItem.style.setProperty('--counter-rotate-y', `${-angle}rad`); // Counter-rotate to keep upright
+            });
+        }
+
+        // Call the initialization function when the window loads
+        window.onload = initializeRashiOrbit;
+
+        // --- Collapsible Sections Logic ---
+        document.querySelectorAll('.toggle-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+                const targetContent = document.getElementById(targetId);
+                const parentSection = button.closest('.collapsible-section');
+
+                if (targetContent.classList.contains('hidden')) {
+                    // Expand the section
+                    targetContent.classList.remove('hidden');
+                    parentSection.classList.remove('collapsed');
+                    button.textContent = '-'; // Change button to minus
+                } else {
+                    // Collapse the section
+                    targetContent.classList.add('hidden');
+                    parentSection.classList.add('collapsed');
+                    button.textContent = '+'; // Change button to plus
+                }
+            });
+        });
+
+        // --- Helper functions for date formatting ---
+        // Formats a Date object into YYYY-MM-DD string
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Gets the current week's start and end dates (Sunday to Saturday) in YYYY-MM-DD_YYYY-MM-DD format
+        function getCurrentWeekDates() {
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0 for Sunday, 1 for Monday, etc.
+            const startDate = new Date(today);
+            startDate.setDate(today.getDate() - dayOfWeek); // Go back to Sunday
+
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 6); // Go forward 6 days to Saturday
+
+            return `${formatDate(startDate)}_${formatDate(endDate)}`;
+        }
+
+        // Formats a Date object into YYYY-MM string
+        function formatMonth(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            return `${year}-${month}`;
+        }
+
+        // --- Rashi Prediction Logic (Fetches from JSON files with new structure) ---
+        const predictionContentDiv = document.getElementById('prediction-content');
+        const rashiItems = document.querySelectorAll('.rashi-item');
+
+        rashiItems.forEach(item => {
+            item.querySelectorAll('.option-button').forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    event.stopPropagation(); // Prevent the parent rashi-item click from firing
+                    const rashi = item.dataset.rashi;
+                    const timeframe = button.dataset.timeframe; // 'daily', 'weekly', or 'monthly'
+
+                    // Display loading spinner
+                    predictionContentDiv.innerHTML = `
+                        <div class="loading-spinner mx-auto"></div>
+                        <p class="mt-4 text-rose-700 font-semibold">Fetching your ${timeframe} prediction for ${rashi}...</p>
+                    `;
+
+                    let predictionKey; // Key to look up within the fetched JSON data
+                    // Determine the correct key based on the timeframe
+                    if (timeframe === 'daily') {
+                        predictionKey = formatDate(new Date()); // e.g., '2025-05-25'
+                    } else if (timeframe === 'weekly') {
+                        predictionKey = getCurrentWeekDates(); // e.g., '2025-05-25_2025-05-31'
+                    } else if (timeframe === 'monthly') {
+                        predictionKey = formatMonth(new Date()); // e.g., '2025-05'
+                    } else {
+                        predictionContentDiv.innerHTML = `<p class="text-red-600">Invalid timeframe selected.</p>`;
+                        return;
+                    }
+
+                    // Construct the file path for the Rashi's JSON file
+                    const filePath = `./data/${rashi}.json`;
+
+                    try {
+                        const response = await fetch(filePath);
+
+                        if (!response.ok) {
+                            // Check for a 404 or other HTTP error
+                            throw new Error(`HTTP error! Status: ${response.status} for ${filePath}`);
+                        }
+
+                        const rashiDataFromFile = await response.json(); // This will be the whole JSON object for the rashi
+
+                        let predictionText = "No prediction available for this timeframe or date.";
+
+                        // Access the correct timeframe object (daily, weekly, or monthly)
+                        // Then, look up the specific prediction using the generated predictionKey
+                        if (rashiDataFromFile[timeframe] && rashiDataFromFile[timeframe][predictionKey]) {
+                            predictionText = rashiDataFromFile[timeframe][predictionKey];
+                        }
+
+                        // If the prediction is an empty string, provide a fallback message
+                        if (predictionText.trim() === "") {
+                            predictionText = `No specific prediction available for ${rashi} on ${predictionKey} (${timeframe}). The data field is currently blank.`;
+                        }
+
+
+                        // Update the prediction display
+                        predictionContentDiv.innerHTML = `
+                            <h3 class="text-2xl font-bold text-rose-800 mb-4 capitalize">${rashi} - ${timeframe} Prediction</h3>
+                            <p>${predictionText}</p>
+                        `;
+
+                    } catch (error) {
+                        console.error('Error fetching prediction:', error);
+                        predictionContentDiv.innerHTML = `
+                            <p class="text-red-600 text-xl font-medium text-center">
+                                Oops! We couldn't load predictions for ${rashi} (${timeframe}).<br>
+                                Please ensure the JSON file '${rashi}.json' is directly in the 'data' folder and correctly formatted.<br>
+                                Error details: ${error.message}
+                            </p>
+                        `;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
